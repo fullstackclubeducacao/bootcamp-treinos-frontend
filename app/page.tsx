@@ -22,7 +22,9 @@ export default async function Home() {
   const today = dayjs();
   const homeData = await getHomeData(today.format("YYYY-MM-DD"));
 
-  if (homeData.status !== 200) redirect("/auth");
+  if (homeData.status !== 200) {
+    throw new Error("Failed to fetch home data");
+  }
 
   const { todayWorkoutDay, workoutStreak, consistencyByDay } = homeData.data;
   const userName = session.data.user.name?.split(" ")[0] ?? "";
