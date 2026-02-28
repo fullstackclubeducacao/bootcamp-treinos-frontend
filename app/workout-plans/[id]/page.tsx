@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import { authClient } from "@/app/_lib/auth-client";
 import { headers } from "next/headers";
-import { getWorkoutPlan } from "@/app/_lib/api/fetch-generated";
+import { getWorkoutPlan, getHomeData, getUserTrainData } from "@/app/_lib/api/fetch-generated";
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { Goal } from "lucide-react";
@@ -34,7 +35,16 @@ export default async function WorkoutPlanPage({
   if (!session.data?.user) redirect("/auth");
 
   const { id } = await params;
-  const workoutPlanData = await getWorkoutPlan(id);
+  const [workoutPlanData, homeData, trainData] = await Promise.all([
+    getWorkoutPlan(id),
+    getHomeData(dayjs().format("YYYY-MM-DD")),
+    getUserTrainData(),
+  ]);
+
+  const needsOnboarding =
+    (homeData.status === 200 && !homeData.data.activeWorkoutPlanId) ||
+    (trainData.status === 200 && !trainData.data);
+  if (needsOnboarding) redirect("/onboarding");
 
   if (workoutPlanData.status !== 200) redirect("/");
 
