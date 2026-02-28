@@ -65,6 +65,12 @@ export function ProfileForm() {
 - Antes de criar uma nova variável de cor, **SEMPRE** busque na documentação do shadcn/ui sobre theming e veja se realmente é necessário.
 - **SEMPRE** veja os componentes que podem ser reutilizados para construção de uma página em @components/ui/page.tsx.
 
+## Autenticação
+
+- **NUNCA** use middleware para verificação de autenticação. **SEMPRE** faça a verificação de sessão na própria página usando `authClient.useSession()`.
+- Páginas protegidas devem redirecionar para `/auth` caso o usuário não esteja logado.
+- A página de login (`/auth`) deve redirecionar para `/` caso o usuário já esteja logado.
+
 ## Imagens
 
 - **SEMPRE** use o componente `Image` do Next para renderizar imagens.
