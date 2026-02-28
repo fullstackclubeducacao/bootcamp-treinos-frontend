@@ -52,7 +52,7 @@ Usamos as seguintes ferramentas para interagir com a API do projeto:
 ## Data Fetching: Server-side e Client-side
 
 - **PRIORIZE** fazer fetching de dados no server-side com o `fetch` e usar o resultado da resposta como `initialData` nos hooks gerados do TanStack Query.
-- Ao fazer data fetching no server-side, **SEMPRE** use as funções exportadas de @lib/api/fetch-generated/index.ts.
+- Ao fazer data fetching no server-side, **SEMPRE** use as funções exportadas de @app/\_lib/api/fetch-generated/index.ts.
 - Ao fazer data-fetching no client-side, **SEMPRE** use os hooks exportados de @lib/api/rc-generated/index.ts.
 
 Exemplo:
