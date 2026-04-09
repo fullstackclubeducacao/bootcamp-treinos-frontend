@@ -22,8 +22,8 @@ export default async function ProfilePage() {
     getHomeData(dayjs().format("YYYY-MM-DD")),
   ]);
 
-  if (trainData.status !== 200) {
-    throw new Error("Failed to fetch user train data");
+  if (homeData.status === 404 || trainData.status !== 200) {
+    redirect("/onboarding");
   }
 
   const needsOnboarding =
