@@ -2,6 +2,7 @@
 
 import { Sparkles } from "lucide-react";
 import { useQueryStates, parseAsBoolean, parseAsString } from "nuqs";
+import { Button } from "@/components/ui/button";
 
 export function ChatOpenButton() {
   const [, setChatParams] = useQueryStates({
@@ -10,11 +11,12 @@ export function ChatOpenButton() {
   });
 
   return (
-    <button
+    <Button
+      size="icon"
       onClick={() => setChatParams({ chat_open: true })}
-      className="rounded-full bg-primary p-4"
+      className="size-14 rounded-full"
     >
-      <Sparkles className="size-6 text-primary-foreground" />
-    </button>
+      <Sparkles className="size-6" />
+    </Button>
   );
 }

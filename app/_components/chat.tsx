@@ -192,13 +192,14 @@ export function Chat({ embedded = false, initialMessage }: ChatProps) {
         {messages.length === 0 && (
           <div className="flex gap-2.5 overflow-x-auto px-5">
             {SUGGESTED_MESSAGES.map((suggestion) => (
-              <button
+              <Button
                 key={suggestion}
+                variant="ghost"
                 onClick={() => handleSuggestion(suggestion)}
-                className="whitespace-nowrap rounded-full bg-primary/10 px-4 py-2 font-heading text-sm text-foreground"
+                className="h-auto whitespace-nowrap rounded-full bg-primary/10 px-4 py-2 font-heading text-sm text-foreground hover:bg-primary/20 hover:text-foreground"
               >
                 {suggestion}
-              </button>
+              </Button>
             ))}
           </div>
         )}

@@ -25,6 +25,10 @@ export default async function Home() {
     getUserTrainData(),
   ]);
 
+  if (homeData.status === 404) {
+    redirect("/onboarding");
+  }
+
   if (homeData.status !== 200) {
     throw new Error("Failed to fetch home data");
   }
